@@ -18,15 +18,18 @@ public class CartDao extends Dao<String, CartVO> {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(SQL.insertCart);
-			pstmt.setObject(1, v.getCustomer());
-			pstmt.setObject(2, v.getItem());
+			pstmt.setString(1, v.getCustomer().getId());
+			pstmt.setString(2, v.getItem().getId());
 			pstmt.setInt(3, v.getQuantity());
 			pstmt.executeUpdate();
+			con.commit();
 		} catch (Exception e) {
+			con.rollback();
 			throw e;
 		} finally {
-			if (pstmt != null)
-				pstmt.close();
+			close(pstmt);
+			if (con != null)
+				con.close();
 		}
 	}
 
@@ -59,11 +62,8 @@ public class CartDao extends Dao<String, CartVO> {
 			pstmt = con.prepareStatement(SQL.selectCart);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				cart = new CartVO(
-					    new CustomerVO(rs.getString("CUSTOMER_ID"), "***",rs.getString("NAME")),
-						new ItemVO(rs.getString("ITEM_ID"), rs.getString("ITEM_NAME"),0),
-						rs.getInt("QUANTITY")
-						);
+				cart = new CartVO(new CustomerVO(rs.getString("ID"), "***", rs.getString("NAME")),
+						new ItemVO(rs.getString("ITEM_ID"), "", 0), rs.getInt("QUANTITY"));
 				carts.add(cart);
 				cart = null;
 			}

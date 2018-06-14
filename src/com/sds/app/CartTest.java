@@ -5,16 +5,18 @@ import java.util.ArrayList;
 import com.sds.frame.Service;
 import com.sds.service.CartService;
 import com.sds.vo.CartVO;
+import com.sds.vo.CustomerVO;
+import com.sds.vo.ItemVO;
 
 public class CartTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		Service<String, CartVO> service = new CartService();
 
 		try {
-			// service.register(makeRandomData());
+			//insert
+			service.register(new CartVO(new CustomerVO("id99", "", ""), new ItemVO("id99", "휴대폰", 5000), 10));
 
 			ArrayList<CartVO> values = service.get();
 			System.out.println(values == null ? "no data" : values.toString());
@@ -25,10 +27,5 @@ public class CartTest {
 		}
 
 	}
-
-	// private static CartVO makeRandomData() {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
 
 }
