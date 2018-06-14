@@ -1,33 +1,51 @@
-DROP TABLE CART IF EXISTS;
-DROP TABLE ITEM IF EXISTS;
-DROP TABLE CUSTOMER IF EXISTS;
+DROP TABLE CART CASCADE CONSTRAINTS;
+DROP TABLE ITEM CASCADE CONSTRAINTS;
+DROP TABLE CUSTOMER CASCADE CONSTRAINTS;
 
 /**********************************/
 /* Table Name: CUSTOMER */
 /**********************************/
 CREATE TABLE CUSTOMER(
-		ID VARCHAR(20),
-		NAME VARCHAR(20),
-		PWD VARCHAR(20)
+		ID                            		VARCHAR2(20)		 NULL ,
+		NAME                          		VARCHAR2(20)		 NULL ,
+		PWD                           		VARCHAR2(20)		 NULL 
 );
+
+COMMENT ON TABLE CUSTOMER is 'CUSTOMER';
+COMMENT ON COLUMN CUSTOMER.ID is 'ID';
+COMMENT ON COLUMN CUSTOMER.NAME is 'NAME';
+COMMENT ON COLUMN CUSTOMER.PWD is 'PWD';
+
 
 /**********************************/
 /* Table Name: ITEM */
 /**********************************/
 CREATE TABLE ITEM(
-		ID VARCHAR(20),
-		NAME VARCHAR(20),
-		PRICE NUMERIC(10)
+		ID                            		VARCHAR2(20)		 NULL ,
+		NAME                          		VARCHAR2(20)		 NULL ,
+		PRICE                         		NUMBER(10)		 NULL 
 );
+
+COMMENT ON TABLE ITEM is 'ITEM';
+COMMENT ON COLUMN ITEM.ID is 'ID';
+COMMENT ON COLUMN ITEM.NAME is 'NAME';
+COMMENT ON COLUMN ITEM.PRICE is 'PRICE';
+
 
 /**********************************/
 /* Table Name: CART */
 /**********************************/
 CREATE TABLE CART(
-		CUSTOMER_ID VARCHAR(20),
-		ITEM_ID VARCHAR(20),
-		QUANTITY NUMERIC(10)
+		CUSTOMER_ID                   		VARCHAR2(20)		 NULL ,
+		ITEM_ID                       		VARCHAR2(20)		 NULL ,
+		QUANTITY                      		NUMBER(10)		 NULL 
 );
+
+COMMENT ON TABLE CART is 'CART';
+COMMENT ON COLUMN CART.CUSTOMER_ID is 'CUSTOMER_ID';
+COMMENT ON COLUMN CART.ITEM_ID is 'ITEM_ID';
+COMMENT ON COLUMN CART.QUANTITY is 'QUANTITY';
+
 
 
 ALTER TABLE CUSTOMER ADD CONSTRAINT IDX_CUSTOMER_PK PRIMARY KEY (ID);
