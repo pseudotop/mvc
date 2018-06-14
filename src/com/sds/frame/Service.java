@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Service<T,V> {
 	private String id = "db";
 	private String password = "db";
-	private String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	private String url = "jdbc:oracle:thin:@70.12.110.173:1521:XE";
 	
 	public Service() {
 		try {
