@@ -25,5 +25,10 @@ public class SQL {
 			"SELECT c.ID, c.PWD, c.NAME, ci.NAME AS ITEMNAME, ci.PRICE"
 			+ " FROM CUSTOMER c, CUSTOMERITEM ci"
 			+ " WHERE c.ID = ci.ID";
-			
+	public static String selectCart = 
+	         "select c.id, c.name, ca.customer_id, ca.item_id, ca.quantity from customer c, cart ca where c.id = ca.id";		
+
+	public static String insertCart =
+	         "INSERT INTO CART VALUES (?,?,?)";
+
 }
